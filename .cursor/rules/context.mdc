@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This is a game app for children to learn go to say words. It uses a minecraft theme to make it more interesting.
+
+The kid can use different tools to manipulate a word. For example splitting parts of the word, or spreading letters, or re-combining.
+
+There are levels to increase difficultiy.

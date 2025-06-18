@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+CSS
+- anything that's front end is always react and tailwind css.
+- Any tailwind spacing should be multiplied by 4 because I'm using 1:1 pixels sizes in tailwind . instead of a scale, it's the same amoutn of pixels. for me p-20 = padding: 20px
+
+Languages / Frameworks 
+- I'm mostly working with typescript.
+- I use yarn
+- When using next.js code don't get examples from the pages router. I'm using the app router.
+- When using Python, assume I"m using FastApi. also look at the requirements.txt before recommending libraries
+- when dealing with database it's likely I'll be useing drizzle. I never use prisma.
+
+Testing
+- most likely I will be using vitest
+
+React Components
+- When creating a component I like to use a function. Destructure the props inside of the function not in the args.
+
+Error Handling
+- Use the `tryCatch` utility from `src/utils/try-catch.ts` for handling operations that might fail (e.g., async calls, potentially problematic sync code).
+- This utility wraps the operation and returns an object `{ data: T | null, error: E | null }`.
+- Prefer using `tryCatch` over standard `try...catch` blocks where applicable to promote a more functional approach to error handling and improve control flow.

@@ -2,17 +2,25 @@
 class SoundManager {
   private sounds: Map<string, HTMLAudioElement> = new Map()
   private volume: number = 0.5
+  private initialized: boolean = false
 
   constructor() {
-    this.preloadSounds()
+    // Don't preload sounds during SSR
   }
 
   private preloadSounds() {
+    // Only run in browser environment
+    if (typeof window === 'undefined' || typeof Audio === 'undefined') {
+      return
+    }
+
     const soundFiles = {
       toolSelect: '/sounds/Select_pattern2.ogg.mp3',
       levelComplete: '/sounds/Challenge_complete.ogg',
       pageFlip: '/sounds/Page_turn1.ogg',
       success: '/sounds/Totem_of_Undying.ogg',
+      swordSwing: '/sounds/minecraft-sword-swing.mp3',
+      pickaxeHit: '/sounds/Axe_strip3.ogg.mp3',
       // Add more sounds here as needed
     }
 
@@ -22,10 +30,17 @@ class SoundManager {
       audio.preload = 'auto'
       this.sounds.set(key, audio)
     })
+
+    this.initialized = true
   }
 
   public play(soundKey: string) {
     try {
+      // Initialize sounds if not already done (lazy loading)
+      if (!this.initialized) {
+        this.preloadSounds()
+      }
+
       const sound = this.sounds.get(soundKey)
       if (sound) {
         // Reset to beginning if already playing
@@ -43,9 +58,13 @@ class SoundManager {
 
   public setVolume(volume: number) {
     this.volume = Math.max(0, Math.min(1, volume))
-    this.sounds.forEach((sound) => {
-      sound.volume = this.volume
-    })
+
+    // Only update existing sounds if they're loaded
+    if (this.initialized) {
+      this.sounds.forEach((sound) => {
+        sound.volume = this.volume
+      })
+    }
   }
 
   public getVolume(): number {

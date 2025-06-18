@@ -1,0 +1,7 @@
+---
+description: To define app configs
+globs: **/*/app-config.ts
+alwaysApply: false
+---
+entityConfigs
+- keys will always be plural
