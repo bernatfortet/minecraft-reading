@@ -13,28 +13,162 @@ export type WordState = {
   letterGroups: LetterGroup[]
 }
 
+// Level 1: Simple 4-5 letter words
 const level1Words = [
-  'WONDERFUL',
-  'BEAUTIFUL',
-  'IMPORTANT',
-  'ADVENTURE',
-  'DIFFERENT',
-  'REMEMBER',
-  'TOGETHER',
-  'BIRTHDAY',
-  'LAUGHTER',
-  'DINOSAUR',
-  'ELEPHANT',
-  'BUTTERFLY',
-  'HOSPITAL',
-  'SANDWICH',
-  'COMPUTER',
+  'BALL',
+  'TREE',
+  'HOUSE',
+  'BREAD',
+  'WATER',
+  'HAPPY',
+  'SMILE',
+  'LIGHT',
+  'WORLD',
+  'HEART',
+  'MUSIC',
+  'PAPER',
+  'GRASS',
+  'SOUND',
+  'PEACE',
 ]
 
+// Level 2: Common 6-7 letter words
 const level2Words = [
+  'ANIMAL',
+  'BRIDGE',
+  'CASTLE',
+  'DRAGON',
+  'ESCAPE',
+  'FLOWER',
+  'GUITAR',
+  'HELMET',
+  'INSECT',
+  'JUNGLE',
+  'KITCHEN',
+  'LIBRARY',
+  'MONSTER',
+  'NATURE',
+  'ORANGE',
+]
+
+// Level 3: 7-8 letter words
+const level3Words = [
+  'BEDROOM',
+  'CHICKEN',
+  'DOLPHIN',
+  'EVENING',
+  'FREEDOM',
+  'GARBAGE',
+  'HOTDOG',
+  'ICEBERG',
+  'JOURNEY',
+  'KEYBOARD',
+  'LEMON',
+  'MAILBOX',
+  'NECKLACE',
+  'OCTOPUS',
+  'PENGUIN',
+]
+
+// Level 4: 8-9 letter words
+const level4Words = [
+  'AIRPLANE',
+  'BIRTHDAY',
+  'CHILDREN',
+  'DAUGHTER',
+  'ELEPHANT',
+  'FESTIVAL',
+  'GOLDFISH',
+  'HOMEWORK',
+  'INVENTOR',
+  'KANGAROO',
+  'LAUGHTER',
+  'MOUNTAIN',
+  'NOTEBOOK',
+  'OPPOSITE',
+  'PAINTING',
+]
+
+// Level 5: 9-10 letter words
+const level5Words = [
+  'ADVENTURE',
+  'BUTTERFLY',
+  'CELEBRATE',
+  'DANGEROUS',
+  'EDUCATION',
+  'FANTASTIC',
+  'GYMNASIUM',
+  'HAMBURGER',
+  'IMPORTANT',
+  'JELLYFISH',
+  'LANDSCAPE',
+  'MAGICIAN',
+  'NECKLACES',
+  'OPERATION',
+  'PINEAPPLE',
+]
+
+// Level 6: 10-11 letter words
+const level6Words = [
+  'BASKETBALL',
+  'CATERPILLAR',
+  'UNDERSTAND',
+  'EVERYWHERE',
+  'FINGERNAIL',
+  'GRANDMOTHER',
+  'HOUSEKEEPING',
+  'INDEPENDENT',
+  'JOURNALIST',
+  'KALEIDOSCOPE',
+  'LAWNMOWER',
+  'MARKETPLACE',
+  'NEIGHBORHOOD',
+  'OBSERVATION',
+  'PLAYGROUND',
+]
+
+// Level 7: Complex 11-12 letter words
+const level7Words = [
+  'BREATHTAKING',
+  'CHAMPIONSHIP',
+  'DISADVANTAGE',
+  'EXTRAORDINARY',
+  'FURTHERMORE',
+  'GEOGRAPHICAL',
+  'HEADQUARTERS',
+  'INTELLIGENCE',
+  'Jacksonville',
+  'KINDERGARTEN',
+  'LABORATORIES',
+  'MATHEMATICAL',
+  'NEIGHBORHOOD',
+  'OVERWHELMING',
+  'PHOTOGRAPHER',
+]
+
+// Level 8: Very complex 12-13 letter words
+const level8Words = [
+  'ADMINISTRATOR',
+  'BIODEGRADABLE',
+  'CONSCIOUSNESS',
+  'DISTINGUISHED',
+  'ELECTROMAGNETIC',
+  'FUNDAMENTALLY',
+  'GRANDDAUGHTER',
+  'HETEROGENEOUS',
+  'IMPLEMENTATION',
+  'JURISPRUDENCE',
+  'KNOWLEDGEABLE',
+  'LIGHTHEARTED',
+  'MANUFACTURING',
+  'NOTWITHSTANDING',
+  'ORGANIZATIONAL',
+]
+
+// Level 9: Extremely complex 13-14 letter words (original level 2)
+const level9Words = [
   'SOPHISTICATED',
   'IMPROBABLE',
-  'EXTRAORDINARY',
   'REVOLUTIONARY',
   'INCOMPREHENSIBLE',
   'METAMORPHOSIS',
@@ -47,15 +181,43 @@ const level2Words = [
   'MISUNDERSTANDING',
   'INTERDISCIPLINARY',
   'ENVIRONMENTALIST',
+  'CONSTITUTIONAL',
+]
+
+// Level 10: Impossibly complex 14+ letter words
+const level10Words = [
+  'DEINSTITUTIONALIZATION',
+  'COUNTERREVOLUTIONARY',
+  'PSYCHOPHARMACOLOGY',
+  'IMMUNOELECTROPHORESIS',
+  'TETRAIODOPHENOLPHTHALEIN',
+  'PNEUMONOULTRAMICROSCOPICSILICOCONIOSIS',
+  'ANTIDISESTABLISHMENTARIANISM',
+  'PSEUDOPSEUDOHYPOPARATHYROIDISM',
+  'FLOCCINAUCINIHILIPILIFICATION',
+  'SUPERCALIFRAGILISTICEXPIALIDOCIOUS',
+  'HONORIFICABILITUDINITATIBUS',
+  'THYROPARATHYROIDECTOMIZED',
+  'RADIOIMMUNOELECTROPHORESIS',
+  'SPECTROPHOTOMETRICALLY',
+  'HEPATICOCHOLANGIOGASTROSTOMY',
 ]
 
 const wordLevels = {
   1: level1Words,
   2: level2Words,
+  3: level3Words,
+  4: level4Words,
+  5: level5Words,
+  6: level6Words,
+  7: level7Words,
+  8: level8Words,
+  9: level9Words,
+  10: level10Words,
 }
 
 export const gameStateStore = atom<{
-  currentLevel: 1 | 2
+  currentLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
   wordIndex: number
 }>({
   currentLevel: 1,
@@ -191,7 +353,7 @@ export function nextWord() {
   console.log('📝 Next word:', nextWordText)
 }
 
-export function switchToLevel(level: 1 | 2) {
+export function switchToLevel(level: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10) {
   const currentGameState = gameStateStore.get()
 
   // Don't do anything if already on this level
